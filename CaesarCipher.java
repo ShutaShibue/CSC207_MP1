@@ -1,6 +1,6 @@
 import java.io.PrintWriter;
 
-public class CaeserCipher {
+public class CaesarCipher {
   public static void main (String[] args) throws Exception {
     java.io.PrintWriter pen;
     pen = new java.io.PrintWriter(System.out, true);
@@ -29,21 +29,23 @@ public class CaeserCipher {
     }
   } // main(String[])
 
+  //There are two functions, encode and decode, but actual work is factored in shiftString. 
+  //However, enode/decode exists as wrapper function to make it easier to understand when I call from main.
   public static void encode(String message, PrintWriter pen)
   {
     for (int i = 0; i < 26; i++) {
       pen.println("n = " + i + ": " + shiftString(message, i));
     }
-  }
+  }//encode(String, PrintWriter)
 
   public static void decode(String message, PrintWriter pen)
   {
     for (int i = 0; i < 26; i++) {
       pen.println("n = " + i + ": " + shiftString(message, -i));
     }
-  }
+  }//decode(String, PrintWriter)
 
-  public static String shiftString(String message, int key)
+  static String shiftString(String message, int key)
   {
     char[] msg = message.toCharArray();
     for(int i = 0; i < message.length(); i++)
@@ -53,5 +55,5 @@ public class CaeserCipher {
       msg[i] += 97; //base
     }
     return new String(msg);
-  }
+  }//shiftString(String, int)
 } //class
